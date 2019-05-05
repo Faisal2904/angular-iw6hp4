@@ -11,17 +11,21 @@ export class AppComponent implements OnInit {
   name = 'Angular';
   genders=['male','female'];
   signupForm:FormGroup;
+ forbiddenUsernmae=['chris','anna'];
 
   ngOnInit(){
     this.signupForm = new FormGroup({
       'userData':new FormGroup({
-        'username': new FormControl(null,Validators.required),
+        'username': new FormControl(null,[Validators.required,this.forbiddenName.bind(this)]),
       'email': new FormControl(null,[Validators.required,Validators.email]),
-      'hobbies': new FormArray([])
+     
       
       }),
-      'gender': new FormControl('male')
+      'gender': new FormControl('male'),
+       'hobbies': new FormArray([])
     })
+
+     console.log(this.signupForm);
   }
 
 
@@ -29,9 +33,21 @@ export class AppComponent implements OnInit {
     console.log(this.signupForm);
   }
 
+
+   forbiddenName( control:FormControl):{[s:string]:boolean}{    //custom validators
+     if(this.forbiddenUsernmae.indexOf(control.value)!=-1){
+       return {'nameisForbidden':true}
+     }
+  
+}
+
+ 
+
   onAddHobby(){
+    
     const control=new FormControl(null,Validators.required);
    (<FormArray> this.signupForm.get('hobbies')).push(control);
 
   }
+  
 }
