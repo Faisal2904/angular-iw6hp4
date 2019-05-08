@@ -28,6 +28,11 @@ export class AppComponent implements OnInit {
       (response)=>{console.log("this is the response of hhtp req",response );}
     )
 
+    this.http.get('https://myproj-caab0.firebaseio.com/data.json').subscribe(
+      (response)=>{console.log("this is the response of hhtp req",response );}
+    )
+
+
 
   }
 
