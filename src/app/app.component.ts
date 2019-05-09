@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import{Http} from '@angular/http';
 
 import { FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
