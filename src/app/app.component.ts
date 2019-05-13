@@ -3,7 +3,7 @@ import{Http} from '@angular/http';
 
 import { FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import * as firebase from "firebase/app";
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'my-app',
