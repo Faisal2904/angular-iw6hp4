@@ -1,9 +1,9 @@
 import { Component,OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import{Http} from '@angular/http';
 
 import { FormGroup,FormControl,Validators,FormArray } from '@angular/forms';
-
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import * as firebase from "firebase/app";
 
 @Component({
   selector: 'my-app',
@@ -26,11 +26,13 @@ export class AppComponent implements OnInit {
   onSubmit(){
     console.log(this.signupForm);
     this.http.post('https://myproj-caab0.firebaseio.com/',[{'name':'faisal'},{'surname':'Iqbal'}]).subscribe(
-      (response)=>{console.log("this is the response of hhtp req",response );}
+      (response)=>{console.log("this is the response of hhtp req",response );},
+      (error)=>{console.log(error);}
     )
 
     this.http.get('https://myproj-caab0.firebaseio.com/data.json').subscribe(
-      (response)=>{console.log("this is the response of hhtp req",response );}
+      (response)=>{console.log("this is the response of hhtp req",response );},
+      (error)=>{console.log(error);}
     )
 
 
@@ -38,6 +40,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
+    firebase.initializeApp({
+      apiKey: "AIzaSyAihfw2GeqImdX35WIxcjGp317jM5Y_q34",
+    authDomain: "ng-recepie-1cce5.firebaseapp.com",
+    // databaseURL: "https://sample6-d38d3.firebaseio.com",
+    // projectId: "sample6-d38d3",
+    // storageBucket: "gs://sample6-d38d3.appspot.com",
+    // messagingSenderId: "358754973898"
+    })
+
+    firebase.auth().createUserWithEmailAndPassword('dadasd@aa','sddfasf');
     this.signupForm = new FormGroup({
       'userData':new FormGroup({
         'username': new FormControl(null,[Validators.required,this.forbiddenName.bind(this)]),
