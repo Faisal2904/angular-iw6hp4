@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
     // messagingSenderId: "358754973898"
     })
 
-    firebase.auth().createUserWithEmailAndPassword('dadasd@aa','sddfasf');
+    //firebase.auth().createUserWithEmailAndPassword('dadasd@aa','sddfasf');
     this.signupForm = new FormGroup({
       'userData':new FormGroup({
         'username': new FormControl(null,[Validators.required,this.forbiddenName.bind(this)]),
